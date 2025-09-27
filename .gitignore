@@ -1,7 +1,8 @@
-# IDE/editor configs
-.idea/
+# IDE / Editor settings
 .vscode/
+.idea/
 *.iml
+
 
 # Build output
 target/
@@ -9,3 +10,4 @@ out/
 
 # Local libraries
 lib/
+
