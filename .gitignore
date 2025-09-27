@@ -1,13 +1,11 @@
-# IDE settings
+# IDE/editor configs
 .idea/
+.vscode/
 *.iml
 
-# Build/compiled output
+# Build output
 target/
 out/
 
-# Logs and system files
-*.log
-*.tmp
-*.DS_Store
-Thumbs.db
+# Local libraries
+lib/
