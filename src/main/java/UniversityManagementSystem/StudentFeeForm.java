@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+//import java.sql.SQLException;
 
 public class StudentFeeForm extends JFrame implements ActionListener {
 
@@ -20,7 +20,7 @@ public class StudentFeeForm extends JFrame implements ActionListener {
 
         getContentPane().setBackground(new Color(210, 252, 251));
 
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/fee.png"));
+        ImageIcon i1 = new ImageIcon("src/resources/icons/fee.png");
         Image i2 = i1.getImage().getScaledInstance(500, 300, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel img = new JLabel(i3);
@@ -122,7 +122,7 @@ public class StudentFeeForm extends JFrame implements ActionListener {
         semesterBox.setBounds(200, 260, 150, 20);
         add(semesterBox);
 
-        JLabel amnt = new JLabel("Toatal amount:");
+        JLabel amnt = new JLabel("Total amount:");
         amnt.setBounds(40, 300, 150, 20);
         add(amnt);
 

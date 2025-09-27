@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,11 +68,11 @@ public class Marks extends JFrame implements ActionListener {
 
             ResultSet rs1 = c.statement.executeQuery("select * from subject where rollno = '"+rollno+"'");
             while(rs1.next()) {
-                sub1.setText(rs1.getString("subj1"));
-                sub2.setText(rs1.getString("subj2"));
-                sub3.setText(rs1.getString("subj3"));
-                sub4.setText(rs1.getString("subj4"));
-                sub5.setText(rs1.getString("subj5"));
+                sub1.setText(rs1.getString("sub1"));
+                sub2.setText(rs1.getString("sub2"));
+                sub3.setText(rs1.getString("sub3"));
+                sub4.setText(rs1.getString("sub4"));
+                sub5.setText(rs1.getString("sub5"));
             }
 
             ResultSet rs2 = c.statement.executeQuery("select * from marks where rollno = '"+rollno+"'");
@@ -82,7 +82,7 @@ public class Marks extends JFrame implements ActionListener {
                 sub3.setText(sub3.getText() + "------" + rs2.getString("mark3"));
                 sub4.setText(sub4.getText() + "------" + rs2.getString("mark4"));
                 sub5.setText(sub5.getText() + "------" + rs2.getString("mark5"));
-                lblsemester.setText("Semester " + rs2.getString("sem"));
+                lblsemester.setText("Semester " + rs2.getString("semester"));
             }
         } catch (Exception e) {
             e.printStackTrace();

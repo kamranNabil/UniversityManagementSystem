@@ -1,11 +1,12 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Conn {
-     Connection connection;
+    public Object conn;
+    Connection connection;
      Statement statement;
 
     public Conn(){

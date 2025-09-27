@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import com.toedter.calendar.JDateChooser;
 import javax.swing.*;

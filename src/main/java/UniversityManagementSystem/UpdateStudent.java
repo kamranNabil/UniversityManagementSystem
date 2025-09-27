@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +11,9 @@ import java.sql.ResultSet;
 public class UpdateStudent extends JFrame implements ActionListener {
 
     JTextField textaddress, phnnum, Email, Numadhaar, textcourse, textbranch;
-    JLabel roll;
+    JLabel rolln;
     JButton update, cancel;
-    Choice cempID;
+    Choice rollno;
     UpdateStudent(){
         getContentPane().setBackground(new Color(230, 210, 252));
 
@@ -22,20 +22,20 @@ public class UpdateStudent extends JFrame implements ActionListener {
         heading.setFont(new Font("serif", Font.BOLD, 35));
         add(heading);
 
-        JLabel empID = new JLabel("Select roll no.:");
-        empID.setBounds(50, 100, 200, 20);
-        empID.setFont(new Font("serif", Font.BOLD, 20));
-        add(empID);
+        JLabel rollnum = new JLabel("Select roll no.:");
+        rollnum.setBounds(50, 100, 200, 20);
+        rollnum.setFont(new Font("serif", Font.BOLD, 20));
+        add(rollnum);
 
-        cempID = new Choice();
-        cempID.setBounds(250, 100, 200, 20);
-        add(cempID);
+        rollno = new Choice();
+        rollno.setBounds(250, 100, 200, 20);
+        add(rollno);
 
         try{
             Conn c = new Conn();
             ResultSet resultSet = c.statement.executeQuery("select * from student");
             while (resultSet.next()){
-                cempID.add(resultSet.getString("roll"));
+                rollno.add(resultSet.getString("roll"));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -64,10 +64,10 @@ public class UpdateStudent extends JFrame implements ActionListener {
         Roll.setFont(new Font("serif", Font.BOLD, 20));
         add(Roll);
 
-        roll = new JLabel();
-        roll.setBounds(200, 200, 150, 30);
-        roll.setFont(new Font("serif", Font.BOLD, 20));
-        add(roll);
+        rolln = new JLabel();
+        rolln.setBounds(200, 200, 150, 30);
+        rolln.setFont(new Font("serif", Font.BOLD, 20));
+        add(rolln);
 
         JLabel dob = new JLabel("Date of Birth:");
         dob.setBounds(400, 200, 200, 30);
@@ -159,7 +159,7 @@ public class UpdateStudent extends JFrame implements ActionListener {
 
         try{
             Conn c = new Conn();
-            String query = "select * from student where roll = '"+cempID.getSelectedItem()+"'";
+            String query = "select * from student where roll = '"+rollno.getSelectedItem()+"'";
             ResultSet resultSet = c.statement.executeQuery(query);
             while (resultSet.next()) {
                 textname.setText(resultSet.getString("name"));
@@ -168,10 +168,10 @@ public class UpdateStudent extends JFrame implements ActionListener {
                 textaddress.setText(resultSet.getString("address"));
                 phnnum.setText(resultSet.getString("Phone"));
                 Email.setText(resultSet.getString("email"));
-                MarksX.setText(resultSet.getString("class_x"));
-                MarksY.setText(resultSet.getString("class_y"));
+                MarksX.setText(resultSet.getString("class_X"));
+                MarksY.setText(resultSet.getString("class_Y"));
                 Numadhaar.setText(resultSet.getString("adhaar"));
-                roll.setText(resultSet.getString("Roll"));
+                rolln.setText(resultSet.getString("roll"));
                 textcourse.setText(resultSet.getString("course"));
                 textbranch.setText(resultSet.getString("branch"));
             }
@@ -181,12 +181,12 @@ public class UpdateStudent extends JFrame implements ActionListener {
         }
 
 
-        cempID.addItemListener(new ItemListener() {
+        rollno.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 try{
                     Conn c = new Conn();
-                    String query = "select * from student where roll = '"+cempID.getSelectedItem()+"'";
+                    String query = "select * from student where roll = '"+rollno.getSelectedItem()+"'";
                     ResultSet resultSet = c.statement.executeQuery(query);
                     while (resultSet.next()) {
                         textname.setText(resultSet.getString("name"));
@@ -195,10 +195,10 @@ public class UpdateStudent extends JFrame implements ActionListener {
                         textaddress.setText(resultSet.getString("address"));
                         phnnum.setText(resultSet.getString("Phone"));
                         Email.setText(resultSet.getString("email"));
-                        MarksX.setText(resultSet.getString("class_x"));
-                        MarksY.setText(resultSet.getString("class_y"));
+                        MarksX.setText(resultSet.getString("class_X"));
+                        MarksY.setText(resultSet.getString("class_Y"));
                         Numadhaar.setText(resultSet.getString("adhaar"));
-                        roll.setText(resultSet.getString("Roll"));
+                        rolln.setText(resultSet.getString("roll"));
                         textcourse.setText(resultSet.getString("course"));
                         textbranch.setText(resultSet.getString("branch"));
                     }
@@ -231,7 +231,7 @@ public class UpdateStudent extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == update){
-            String empID = roll.getText();
+            String rollno = rolln.getText();
             String address = textaddress.getText();
             String phn = phnnum.getText();
             String email = Email.getText();
@@ -241,7 +241,7 @@ public class UpdateStudent extends JFrame implements ActionListener {
             try{
                 String q = "Update student set address = '"+address+"', phone = '"+phn+"', " +
                         "email = '"+email+"', course = '"+course+"', branch = '"+branch+"' " +
-                        "where roll = '"+empID+"'";
+                        "where roll = '"+rollno+"'";
                 Conn c = new Conn();
                 c.statement.executeUpdate(q);
 

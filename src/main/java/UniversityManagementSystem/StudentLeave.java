@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -8,34 +8,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
-public class TeacherLeave extends JFrame implements ActionListener {
+public class StudentLeave extends JFrame implements ActionListener {
 
-    Choice choiceempid, chotime;
+    Choice choicerollno, chotime;
     JDateChooser seldate;
     JButton submit, cancel;
-    TeacherLeave(){
+    StudentLeave(){
 
         getContentPane().setBackground(new Color(210, 232, 252));
 
-        JLabel heading = new JLabel("Apply Teacher's Leave");
+        JLabel heading = new JLabel("Apply Student's Leave");
         heading.setBounds(40, 50, 300, 30);
         heading.setFont(new Font("Tahoma", Font.BOLD, 20));
         add(heading);
 
-        JLabel empid = new JLabel("Search by employee ID");
-        empid.setBounds(60, 100, 200, 30);
-        empid.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        add(empid);
+        JLabel rollno = new JLabel("Search by Roll");
+        rollno.setBounds(60, 100, 200, 30);
+        rollno.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        add(rollno);
 
-        choiceempid = new Choice();
-        choiceempid.setBounds(60, 130, 200, 20);
-        add(choiceempid);
+        choicerollno = new Choice();
+        choicerollno.setBounds(60, 130, 200, 20);
+        add(choicerollno);
 
         try{
             Conn c = new Conn();
-            ResultSet resultSet = c.statement.executeQuery("Select * from teacher");
+            ResultSet resultSet = c.statement.executeQuery("Select * from Student");
             while(resultSet.next()){
-                choiceempid.add(resultSet.getString("empId"));
+                choicerollno.add(resultSet.getString("roll"));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -50,7 +50,7 @@ public class TeacherLeave extends JFrame implements ActionListener {
         seldate.setBounds(60, 210, 200, 25);
         add(seldate);
 
-        JLabel time = new JLabel("Leave Durartion:");
+        JLabel time = new JLabel("Leave For Durartion:");
         time.setBounds(60, 250, 200, 30);
         time.setFont(new Font("Tahoma", Font.PLAIN, 20));
         add(time);
@@ -84,11 +84,11 @@ public class TeacherLeave extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit){
-            String empid = choiceempid.getSelectedItem();
+            String rollno = choicerollno.getSelectedItem();
             String datee = ((JTextField) seldate.getDateEditor().getUiComponent()).getText();
             String time = chotime.getSelectedItem();
 
-            String q = "insert into teacherleave values('"+empid+"', '"+datee+"','"+time+"')";
+            String q = "insert into studentleave values('"+rollno+"', '"+datee+"','"+time+"')";
             try{
                 Conn c = new Conn();
                 c.statement.executeUpdate(q);
@@ -101,7 +101,8 @@ public class TeacherLeave extends JFrame implements ActionListener {
             setVisible(false);
         }
     }
+
     public static void main(String[] args) {
-        new TeacherLeave();
+        new StudentLeave();
     }
 }

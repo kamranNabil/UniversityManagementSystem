@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class UpdateTeacher extends JFrame implements ActionListener {
     JTextField textaddress, phnnum, Email, Numadhaar, textcourse, textbranch;
     JLabel emptext, address, dob, Add;
     JButton update, cancel;
-    Choice cempID;
+    Choice empid;
     UpdateTeacher(){
 
 
@@ -29,15 +29,15 @@ public class UpdateTeacher extends JFrame implements ActionListener {
         empID.setFont(new Font("serif", Font.BOLD, 20));
         add(empID);
 
-        cempID = new Choice();
-        cempID.setBounds(250, 100, 200, 20);
-        add(cempID);
+        empid = new Choice();
+        empid.setBounds(250, 100, 200, 20);
+        add(empid);
 
         try{
             Conn c = new Conn();
             ResultSet resultSet = c.statement.executeQuery("select * from teacher");
             while (resultSet.next()){
-                cempID.add(resultSet.getString("empID"));
+                empid.add(resultSet.getString("empid"));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -161,7 +161,7 @@ public class UpdateTeacher extends JFrame implements ActionListener {
 
         try{
             Conn c = new Conn();
-            String query = "select * from teacher where empid = '"+cempID.getSelectedItem()+"'";
+            String query = "select * from teacher where empid = '"+empid.getSelectedItem()+"'";
             ResultSet resultSet = c.statement.executeQuery(query);
             while (resultSet.next()) {
                 textname.setText(resultSet.getString("name"));
@@ -171,9 +171,9 @@ public class UpdateTeacher extends JFrame implements ActionListener {
                 phnnum.setText(resultSet.getString("Phone"));
                 Email.setText(resultSet.getString("email"));
                 MarksX.setText(resultSet.getString("class_x"));
-                MarksY.setText(resultSet.getString("class_y"));
-                Numadhaar.setText(resultSet.getString("adhaar"));
-                emptext.setText(resultSet.getString("EmpID"));
+                MarksY.setText(resultSet.getString("class_XII"));
+                Numadhaar.setText(resultSet.getString("aadhaar"));
+                emptext.setText(resultSet.getString("empid"));
                 textcourse.setText(resultSet.getString("education"));
                 textbranch.setText(resultSet.getString("department"));
             }
@@ -182,12 +182,12 @@ public class UpdateTeacher extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        cempID.addItemListener(new ItemListener() {
+        empid.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 try{
                     Conn c = new Conn();
-                    String query = "select * from teacher where empid = '"+cempID.getSelectedItem()+"'";
+                    String query = "select * from teacher where empid = '"+empid.getSelectedItem()+"'";
                     ResultSet resultSet = c.statement.executeQuery(query);
                     while (resultSet.next()) {
                         textname.setText(resultSet.getString("name"));
@@ -197,9 +197,9 @@ public class UpdateTeacher extends JFrame implements ActionListener {
                         phnnum.setText(resultSet.getString("Phone"));
                         Email.setText(resultSet.getString("email"));
                         MarksX.setText(resultSet.getString("class_x"));
-                        MarksY.setText(resultSet.getString("class_y"));
-                        Numadhaar.setText(resultSet.getString("adhaar"));
-                        emptext.setText(resultSet.getString("EmpID"));
+                        MarksY.setText(resultSet.getString("class_XII"));
+                        Numadhaar.setText(resultSet.getString("aadhaar"));
+                        emptext.setText(resultSet.getString("empid"));
                         textcourse.setText(resultSet.getString("education"));
                         textbranch.setText(resultSet.getString("department"));
                     }
@@ -242,11 +242,9 @@ public class UpdateTeacher extends JFrame implements ActionListener {
 
             try{
                 String q = "Update teacher set address = '"+address+"', phone = '"+phn+"', " +
-                        "email = '"+email+"', education = '"+course+"', department = '"+branch+"' " +
-                        "where empId = '"+empID+"'";
+                        "email = '"+email+"', education = '"+course+"', department = '"+branch+"' " +"where empid = '"+empid+"'";
                 Conn c = new Conn();
                 c.statement.executeUpdate(q);
-
                 JOptionPane.showMessageDialog(null, "Details Updated");
                 setVisible(false);
             } catch (Exception E) {

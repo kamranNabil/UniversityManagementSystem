@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class Main extends JFrame implements ActionListener {
     Main(){
 
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/third.jpg"));
+        ImageIcon i1 = new ImageIcon("src/resources/icons/third.jpg");
         Image i2 = i1.getImage().getScaledInstance(1540, 850, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel img = new JLabel(i3);

@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
@@ -182,9 +182,10 @@ public class AddFaculty extends JFrame implements ActionListener {
             String dept = (String) departmentBox.getSelectedItem();
 
             try {
-                String q = "INSERT INTO teacher (name, fname, empId, dob, address, phone, email, class_X, class_Y, adhaar, education, department) " +
-                        "VALUES ('" + name + "', '" + fname + "', '" + empid + "', '" + dob + "', '" + address + "', '" + phone + "', '" + email +
-                        "', '" + X + "', '" + Y + "', '" + adhaar + "', '" + course + "', '" + departmentBox.getSelectedItem() + "')";
+                String q = "INSERT INTO teacher (name, fname, empID, dob, address, phone, email, class_X, class_XII, aadhaar, education, department) "
+                        + "VALUES ('" + name + "', '" + fname + "', '" + empid + "', '" + dob + "', '" + address + "', '" + phone + "', '"
+                        + email + "', '" + X + "', '" + Y + "', '" + adhaar + "', '" + course + "', '" + dept + "')";
+
                 Conn c = new Conn();
                 c.statement.executeUpdate(q);
                 JOptionPane.showMessageDialog(null, "Details Inserted");

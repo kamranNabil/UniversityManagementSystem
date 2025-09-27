@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,14 +45,14 @@ public class Login extends JFrame implements ActionListener {
         Back.addActionListener(this);
         add(Back);
 
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/second.png"));
+        ImageIcon i1 = new ImageIcon("src/resources/icons/login.png");
         Image i2 = i1.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel img = new JLabel(i3);
         img.setBounds(350, 20, 200, 200);
         add(img);
 
-        ImageIcon i11 = new ImageIcon(ClassLoader.getSystemResource("icons/loginback.png"));
+        ImageIcon i11 = new ImageIcon("src/resources/icons/loginback.png");
         Image i22 = i11.getImage().getScaledInstance(600, 300, Image.SCALE_DEFAULT);
         ImageIcon i33 = new ImageIcon(i22);
         JLabel image = new JLabel(i33);

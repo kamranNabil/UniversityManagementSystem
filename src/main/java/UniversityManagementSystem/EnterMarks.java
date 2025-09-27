@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,9 +13,9 @@ public class EnterMarks extends JFrame implements ActionListener {
     JButton submit, cancel;
     EnterMarks(){
 
-        getContentPane().setBackground(new Color(252, 245, 210));
+        getContentPane().setBackground(new Color(255, 207, 207));
 
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/exam.png"));
+        ImageIcon i1 = new ImageIcon("src/resources/icons/exam.png");
         Image i2 = i1.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel img = new JLabel(i3);

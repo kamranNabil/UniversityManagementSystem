@@ -1,7 +1,6 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import net.proteanit.sql.DbUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,38 +12,42 @@ public class TeacherLeaveDetails extends JFrame implements ActionListener {
     Choice choiceempID;
     JTable table;
     JButton search, cancel, print;
+
     TeacherLeaveDetails() {
 
         getContentPane().setBackground(new Color(250, 172, 206));
 
         JLabel heading = new JLabel("Search by Employee Id");
-        heading.setBounds(20, 20, 150, 20);
+        heading.setBounds(20, 20, 200, 20);
         add(heading);
 
         choiceempID = new Choice();
-        choiceempID.setBounds(180, 20, 150, 20);
+        choiceempID.setBounds(220, 20, 150, 20);
         add(choiceempID);
+
+        // Populate employee IDs
         try {
             Conn c = new Conn();
-            ResultSet resultSet = c.statement.executeQuery("Select * from teacherleave");
+            ResultSet resultSet = c.statement.executeQuery("SELECT DISTINCT empid FROM teacherleaves");
             while (resultSet.next()) {
-                choiceempID.add(resultSet.getString("empID"));
+                choiceempID.add(resultSet.getString("empid"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // Initialize table
         table = new JTable();
-        try{
+        try {
             Conn c = new Conn();
-            ResultSet resultSet = c.statement.executeQuery("Select * from teacherleave");
+            ResultSet resultSet = c.statement.executeQuery("SELECT empid, `date`, time FROM teacherleaves");
             table.setModel(DbUtils.resultSetToTableModel(resultSet));
-        }catch (Exception E){
+        } catch (Exception E) {
             E.printStackTrace();
         }
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(0, 100, 900,  600);
+        scrollPane.setBounds(0, 100, 900, 600);
         add(scrollPane);
 
         search = new JButton("Search");
@@ -66,13 +69,15 @@ public class TeacherLeaveDetails extends JFrame implements ActionListener {
         setLocation(300, 100);
         setLayout(null);
         setVisible(true);
+
+        initComponents();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == search){
-            String q = "select * from teacherleave where empid = '"+choiceempID.getSelectedItem()+"'";
-            try{
+        if (e.getSource() == search) {
+            String q = "SELECT empid, `date`, time FROM teacherleaves WHERE empid = '" + choiceempID.getSelectedItem() + "'";
+            try {
                 Conn c = new Conn();
                 ResultSet resultSet = c.statement.executeQuery(q);
                 table.setModel(DbUtils.resultSetToTableModel(resultSet));
@@ -80,14 +85,18 @@ public class TeacherLeaveDetails extends JFrame implements ActionListener {
                 E.printStackTrace();
             }
         } else if (e.getSource() == print) {
-            try{
+            try {
                 table.print();
-            }catch (Exception E){
+            } catch (Exception E) {
                 E.printStackTrace();
             }
-        }else {
+        } else {
             setVisible(false);
         }
+    }
+
+    private void initComponents() {
+        // put all Conn and JTable setup code here
     }
 
     public static void main(String[] args) {

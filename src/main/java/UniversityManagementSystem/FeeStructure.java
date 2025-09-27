@@ -1,5 +1,5 @@
-package University.Management.System;
-
+package UniversityManagementSystem;
+ 
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package University.Management.System;
+package UniversityManagementSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +10,7 @@ public class Splash extends JFrame implements Runnable{
     Thread t;
     Splash(){
 
-
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/first.png"));
+        ImageIcon i1 = new ImageIcon("src/resources/icons/first.png");
         Image i2 = i1.getImage().getScaledInstance(1000, 700, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel img = new JLabel(i3);
@@ -23,7 +22,7 @@ public class Splash extends JFrame implements Runnable{
 
         int x = 1;
         for (int i = 2; i<=600; i += 4, x++) {
-            setLocation(600 - ((i + x)/2), 250 - (i/2));
+            setLocation(600 - ((i + x)/2), 300 - (i/2));
             setSize(i + 3*x, i*x/2);
 
             try{
@@ -36,7 +35,7 @@ public class Splash extends JFrame implements Runnable{
     }
     public void run(){
         try{
-            sleep(7000);
+            sleep(4000);
             setVisible(false);
             //next class
             new Login();
